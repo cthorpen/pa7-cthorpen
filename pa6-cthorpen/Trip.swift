@@ -20,11 +20,11 @@ class Trip {
     }
     
     //MARK: - initializers
-    init() {
-        self.destinationName = ""
-        self.startDate = .init()
-        self.endDate = .init()
-        self.imageFileName = nil
+    init(destinationName: String, startDate: Date, endDate: Date, imageFileName: String?) {
+        self.destinationName = destinationName
+        self.startDate = startDate
+        self.endDate = endDate
+        self.imageFileName = imageFileName
     }
     
 }

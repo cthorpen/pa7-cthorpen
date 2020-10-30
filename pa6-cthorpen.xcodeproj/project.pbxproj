@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		627920FA254B92AB0026FA32 /* Trip.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627920F9254B92AB0026FA32 /* Trip.swift */; };
+		627920FC254B9BD70026FA32 /* TripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 627920FB254B9BD70026FA32 /* TripTableViewController.swift */; };
 		62B7000E2549031700A34CA8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B7000D2549031700A34CA8 /* AppDelegate.swift */; };
 		62B700102549031700A34CA8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B7000F2549031700A34CA8 /* SceneDelegate.swift */; };
-		62B700122549031700A34CA8 /* TripTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 62B700112549031700A34CA8 /* TripTableViewController.swift */; };
 		62B700152549031700A34CA8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B700132549031700A34CA8 /* Main.storyboard */; };
 		62B700172549031800A34CA8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62B700162549031800A34CA8 /* Assets.xcassets */; };
 		62B7001A2549031800A34CA8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62B700182549031800A34CA8 /* LaunchScreen.storyboard */; };
@@ -18,10 +18,10 @@
 
 /* Begin PBXFileReference section */
 		627920F9254B92AB0026FA32 /* Trip.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Trip.swift; sourceTree = "<group>"; };
+		627920FB254B9BD70026FA32 /* TripTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewController.swift; sourceTree = "<group>"; };
 		62B7000A2549031700A34CA8 /* pa6-cthorpen.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "pa6-cthorpen.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62B7000D2549031700A34CA8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		62B7000F2549031700A34CA8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		62B700112549031700A34CA8 /* TripTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TripTableViewController.swift; sourceTree = "<group>"; };
 		62B700142549031700A34CA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		62B700162549031800A34CA8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		62B700192549031800A34CA8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -60,8 +60,8 @@
 			children = (
 				62B7000D2549031700A34CA8 /* AppDelegate.swift */,
 				62B7000F2549031700A34CA8 /* SceneDelegate.swift */,
-				62B700112549031700A34CA8 /* TripTableViewController.swift */,
 				627920F9254B92AB0026FA32 /* Trip.swift */,
+				627920FB254B9BD70026FA32 /* TripTableViewController.swift */,
 				62B700132549031700A34CA8 /* Main.storyboard */,
 				62B700162549031800A34CA8 /* Assets.xcassets */,
 				62B700182549031800A34CA8 /* LaunchScreen.storyboard */,
@@ -141,8 +141,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				627920FA254B92AB0026FA32 /* Trip.swift in Sources */,
-				62B700122549031700A34CA8 /* TripTableViewController.swift in Sources */,
 				62B7000E2549031700A34CA8 /* AppDelegate.swift in Sources */,
+				627920FC254B9BD70026FA32 /* TripTableViewController.swift in Sources */,
 				62B700102549031700A34CA8 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
