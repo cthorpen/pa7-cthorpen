@@ -10,7 +10,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class TripTableViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
