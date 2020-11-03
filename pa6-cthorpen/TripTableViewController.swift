@@ -7,16 +7,33 @@
 
 import UIKit
 
-class TripTableViewController: UIViewController {
-
+class TripTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+    
     //instance of Trip
     var trips = [Trip]()
     //table view outlet
     @IBOutlet var tableView: UITableView!
-
     
     
+    //MARK: - Data Source / Delegation
+    //to tell how many rows are in the section
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if section == 0 {
+            return trips.count
+        }
+        return 0
+    }
     
+    // to tell what cell to put at this index path
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let row = indexPath.row
+        let trip = trips[row]
+        //to get a reuseable cell to display this trip
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TripCell", for: indexPath) as! TripTableViewCell
+        //update the cell with the trip's info
+        cell.update(with: trip)
+        return cell
+    }
     
     //MARK: - initial setup
     func initializeTrips() {
