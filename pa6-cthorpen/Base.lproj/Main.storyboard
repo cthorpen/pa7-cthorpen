@@ -87,6 +87,10 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="YBl-Iu-YxD"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ljD-kt-1rG"/>
+                                </connections>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>

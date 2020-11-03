@@ -14,6 +14,11 @@ class Trip {
     var startDate: Date
     var endDate: Date
     var imageFileName: String?
+    static let dateFormat: DateFormatter =  {
+        let myDateFormat = DateFormatter()
+        myDateFormat.dateFormat = "MM/dd/yyyy"
+        return myDateFormat
+    }()
     
     var description: String {
         return "My trip to \(destinationName), from \(startDate) to \(endDate)."

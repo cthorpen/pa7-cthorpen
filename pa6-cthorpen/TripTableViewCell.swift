@@ -26,10 +26,11 @@ class TripTableViewCell: UITableViewCell {
     }
     
     func update(with trip: Trip) {
-        destinationLabel.text = trip.destinationName
-        startDateLabel.text = "today"//trip.startDate
-        endDateLabel.text = "tomorrow"//trip.endDate
         
+        destinationLabel.text = trip.destinationName
+        startDateLabel.text = Trip.dateFormat.string(from: trip.startDate)
+        endDateLabel.text = Trip.dateFormat.string(from: trip.endDate)
+        print(trip.description)
     }
 
 }
