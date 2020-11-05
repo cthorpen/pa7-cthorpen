@@ -67,6 +67,40 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let identifier = segue.identifier {
+            if identifier == "DetailSegue" {
+                if let tripDetailVC = segue.destination as? TripDetailViewController {
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                        let trip = trips[indexPath.row]
+                        tripDetailVC.tripOptional = trip
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func unwindToTripTableViewController(segue: UIStoryboardSegue) {
+        if let identifier = segue.identifier {
+            if identifier == "SaveUnwindSegue" {
+                if let tripDetailVC = segue.source as? TripDetailViewController {
+                    if let trip = tripDetailVC.tripOptional {
+                        if let indexPath = tableView.indexPathForSelectedRow {
+                            trips[indexPath.row] = trip
+                            //force refresh
+                            tableView.reloadData()
+                        }
+                        else {
+                            trips.append(trip)
+                        }
+                        tableView.reloadData()
+                    }
+                }
+            }
+        }
+    }
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
