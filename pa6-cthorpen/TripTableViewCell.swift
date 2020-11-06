@@ -9,8 +9,7 @@ import UIKit
 
 class TripTableViewCell: UITableViewCell {
 
-    @IBOutlet var startDateLabel: UILabel!
-    @IBOutlet var endDateLabel: UILabel!
+    @IBOutlet var DatesLabel: UILabel!
     @IBOutlet var destinationLabel: UILabel!
     @IBOutlet var tripImageView: UIImageView!
     
@@ -28,8 +27,7 @@ class TripTableViewCell: UITableViewCell {
     func update(with trip: Trip) {
         
         destinationLabel.text = trip.destinationName
-        startDateLabel.text = Trip.dateFormat.string(from: trip.startDate)
-        endDateLabel.text = Trip.dateFormat.string(from: trip.endDate)
+        DatesLabel.text = ("\(Trip.dateFormat.string(from: trip.startDate)) - \(Trip.dateFormat.string(from: trip.endDate))")
         print(trip.description)
     }
 

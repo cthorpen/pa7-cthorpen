@@ -40,7 +40,6 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
         //create 5 Trip instances, at least 2 need images
         //need to add image files
         
-        
         if let irelandStartOptional = Trip.dateFormat.date(from: "06/25/2018") {
             if let irelandEndOptional = Trip.dateFormat.date(from: "07/02/2018") {
                 trips.append(Trip(destinationName: "Ireland", startDate: irelandStartOptional, endDate: irelandEndOptional, imageFileName: nil)) //change from nil later
@@ -68,20 +67,28 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
         }
     }
     
+    //MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        print("hello from prepare (DetailSegue)")
         if let identifier = segue.identifier {
             if identifier == "DetailSegue" {
+                print("detail segue 1")
                 if let tripDetailVC = segue.destination as? TripDetailViewController {
+                    print("detail segue 2")
                     if let indexPath = tableView.indexPathForSelectedRow {
+                        print("detail segue 3")
                         let trip = trips[indexPath.row]
                         tripDetailVC.tripOptional = trip
+                        print("detail segue...")
                     }
                 }
             }
         }
     }
     
+    /*
     @IBAction func unwindToTripTableViewController(segue: UIStoryboardSegue) {
+        print("hello from unwind")
         if let identifier = segue.identifier {
             if identifier == "SaveUnwindSegue" {
                 if let tripDetailVC = segue.source as? TripDetailViewController {
@@ -100,8 +107,31 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
             }
         }
     }
+    */
     
-
+    //MARK: - Editing
+    @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
+        print("edit button pressed")
+        let newEditingMode = !tableView.isEditing
+        tableView.setEditing(newEditingMode, animated: true)
+        print("in editing function")
+    }
+    
+    //rearranging rows in table
+    func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
+        print("rearrange")
+        let trip = trips.remove(at: sourceIndexPath.row)
+        trips.insert(trip, at: destinationIndexPath.row)
+        tableView.reloadData()
+    }
+    
+    //deleting a row in editing mode
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print("delete")
+        trips.remove(at: indexPath.row)
+        tableView.deleteRows(at: [indexPath], with: .fade)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
