@@ -42,72 +42,68 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
         
         if let irelandStartOptional = Trip.dateFormat.date(from: "06/25/2018") {
             if let irelandEndOptional = Trip.dateFormat.date(from: "07/02/2018") {
-                trips.append(Trip(destinationName: "Ireland", startDate: irelandStartOptional, endDate: irelandEndOptional, imageFileName: nil)) //change from nil later
+                trips.append(Trip(destinationName: "Ireland", startDate: irelandStartOptional, endDate: irelandEndOptional, imageFileName: "ireland1.png"))
             }
         }
         if let spainStartOptional = Trip.dateFormat.date(from: "01/06/2018") {
             if let spainEndOptional = Trip.dateFormat.date(from: "03/14/2018") {
-                trips.append(Trip(destinationName: "Spain", startDate: spainStartOptional, endDate: spainEndOptional, imageFileName: nil)) //change from nil later
+                trips.append(Trip(destinationName: "Spain", startDate: spainStartOptional, endDate: spainEndOptional, imageFileName: "spain1.jpg"))
             }
         }
         if let nassauStartOptional = Trip.dateFormat.date(from: "01/02/2019") {
             if let nassauEndOptional = Trip.dateFormat.date(from: "01/09/2019") {
-                trips.append(Trip(destinationName: "Nassau", startDate: nassauStartOptional, endDate: nassauEndOptional, imageFileName: nil)) //change from nil later
+                trips.append(Trip(destinationName: "Nassau", startDate: nassauStartOptional, endDate: nassauEndOptional, imageFileName: "nassau1.png")) //change from nil later
             }
         }
         if let amsterdamStartOptional = Trip.dateFormat.date(from: "02/25/2020") {
             if let amsterdamEndOptional = Trip.dateFormat.date(from: "02/29/2020") {
-                trips.append(Trip(destinationName: "Amsterdam", startDate: amsterdamStartOptional, endDate: amsterdamEndOptional, imageFileName: nil)) //change from nil later
+                trips.append(Trip(destinationName: "Amsterdam", startDate: amsterdamStartOptional, endDate: amsterdamEndOptional, imageFileName: "amsterdam1.png")) //change from nil later
             }
         }
         if let londonStartOptional = Trip.dateFormat.date(from: "03/14/2020") {
             if let londonEndOptional = Trip.dateFormat.date(from: "03/17/2020") {
-                trips.append(Trip(destinationName: "London", startDate: londonStartOptional, endDate: londonEndOptional, imageFileName: nil)) //change from nil later
+                trips.append(Trip(destinationName: "London", startDate: londonStartOptional, endDate: londonEndOptional, imageFileName: "london1.png")) //change from nil later
             }
         }
     }
     
     //MARK: - Segues
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("hello from prepare (DetailSegue)")
+        print("hello from prepare")
         if let identifier = segue.identifier {
             if identifier == "DetailSegue" {
-                print("detail segue 1")
                 if let tripDetailVC = segue.destination as? TripDetailViewController {
-                    print("detail segue 2")
-                    if let indexPath = tableView.indexPathForSelectedRow {
-                        print("detail segue 3")
+                    if let indexPath = tableView.indexPathForSelectedRow { //issue here
                         let trip = trips[indexPath.row]
                         tripDetailVC.tripOptional = trip
-                        print("detail segue...")
+                        print("detail segue")
                     }
+                }
+            }
+            else if identifier == "AddSegue" {
+                if let indexPath = tableView.indexPathForSelectedRow {
+                    tableView.deselectRow(at: indexPath, animated: true)
+                    print("add segue")
                 }
             }
         }
     }
     
-    /*
+
     @IBAction func unwindToTripTableViewController(segue: UIStoryboardSegue) {
         print("hello from unwind")
         if let identifier = segue.identifier {
             if identifier == "SaveUnwindSegue" {
-                if let tripDetailVC = segue.source as? TripDetailViewController {
-                    if let trip = tripDetailVC.tripOptional {
-                        if let indexPath = tableView.indexPathForSelectedRow {
-                            trips[indexPath.row] = trip
-                            //force refresh
-                            tableView.reloadData()
-                        }
-                        else {
-                            trips.append(trip)
-                        }
+                if let addTripVC = segue.source as? AddTripViewController {
+                    if let trip = addTripVC.tripOptional {
+                        trips.append(trip)
                         tableView.reloadData()
+                        print("inside unwind...")
                     }
                 }
             }
         }
     }
-    */
     
     //MARK: - Editing
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {

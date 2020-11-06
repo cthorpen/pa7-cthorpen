@@ -29,6 +29,7 @@ class TripTableViewCell: UITableViewCell {
         destinationLabel.text = trip.destinationName
         DatesLabel.text = ("\(Trip.dateFormat.string(from: trip.startDate)) - \(Trip.dateFormat.string(from: trip.endDate))")
         print(trip.description)
+        tripImageView.image = UIImage(named: trip.imageFileName)
     }
 
 }

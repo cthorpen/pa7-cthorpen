@@ -13,7 +13,7 @@ class Trip {
     var destinationName: String
     var startDate: Date
     var endDate: Date
-    var imageFileName: String?
+    var imageFileName: String
     static let dateFormat: DateFormatter =  {
         let myDateFormat = DateFormatter()
         myDateFormat.dateFormat = "MM/dd/yyyy"
@@ -25,7 +25,7 @@ class Trip {
     }
     
     //MARK: - initializers
-    init(destinationName: String, startDate: Date, endDate: Date, imageFileName: String?) {
+    init(destinationName: String, startDate: Date, endDate: Date, imageFileName: String) {
         self.destinationName = destinationName
         self.startDate = startDate
         self.endDate = endDate
