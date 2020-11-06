@@ -14,6 +14,7 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var endDateTextField: UITextField!
     
     @IBOutlet var tripNumberLabel: UILabel!
+    var tripNum = 5
     
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
@@ -25,7 +26,7 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
+        tripNumberLabel.text = "Add Trip #\(tripNum)"
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -49,6 +50,7 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
                         let start = dateFormatter.date(from: startDate)!
                         let end = dateFormatter.date(from: endDate)!
                         tripOptional = Trip(destinationName: destination, startDate: start, endDate: end, imageFileName: "")
+                        
                     }
                 }
             }

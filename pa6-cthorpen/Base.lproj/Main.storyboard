@@ -259,6 +259,9 @@
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5b-GZ-bBn">
                                         <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
                                         <state key="normal" title="Cancel"/>
+                                        <connections>
+                                            <segue destination="4b1-h5-gHq" kind="unwind" identifier="CancelUnwindSegue" unwindAction="unwindToTripTableViewControllerWithSegue:" id="Tsh-7p-WQt"/>
+                                        </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYH-Lz-uRK">
                                         <rect key="frame" x="123" y="0.0" width="48" height="30"/>

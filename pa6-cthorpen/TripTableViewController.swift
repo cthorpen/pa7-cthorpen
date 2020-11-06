@@ -99,6 +99,7 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
                         trips.append(trip)
                         tableView.reloadData()
                         print("inside unwind...")
+                        addTripVC.tripNum = trips.count
                     }
                 }
             }
