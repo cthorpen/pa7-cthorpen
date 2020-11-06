@@ -14,13 +14,14 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
     @IBOutlet var endDateTextField: UITextField!
     
     @IBOutlet var tripNumberLabel: UILabel!
-    var tripNum = 5
+    var tripNum: Int = 6
     
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     
     var tripOptional: Trip? = nil
     let dateFormatter = DateFormatter()
+    
 
 
     override func viewDidLoad() {
@@ -29,6 +30,9 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
         tripNumberLabel.text = "Add Trip #\(tripNum)"
     }
     
+    //Function to resign the keyboard when return is pressed
+        //parameters: UITextField, any of the ones in the VC
+        //return: Bool value to determine if keyboard resigns
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         textField.resignFirstResponder()
         return true
@@ -37,7 +41,9 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
 
     // MARK: - Navigation
 
-    
+    //function that, when 'save' is pressed, will prepare to segue back to the table view
+        //parameters: segue: SaveUnwindSegue, sender: TripTableViewController
+        //return: none
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         //turn the string date to a real date
         dateFormatter.dateFormat = "MM/dd/yyyy"
@@ -50,7 +56,11 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
                         let start = dateFormatter.date(from: startDate)!
                         let end = dateFormatter.date(from: endDate)!
                         tripOptional = Trip(destinationName: destination, startDate: start, endDate: end, imageFileName: "")
-                        
+                        tripNum += 1
+                    }
+                    //auto unwrapped because the dates were checked in shouldPerformSegue(...)
+                    else {
+                        tripOptional = Trip(destinationName: destination, startDate: dateFormatter.date(from: startDate)!, endDate: dateFormatter.date(from: endDate)!, imageFileName: "")
                     }
                 }
             }
@@ -60,6 +70,9 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
     
     //MARK: - Input Error Control
     
+    //executes before the segue is performed to see if all cases are met in order to return to previous screen
+        //parameters: identifier: SaveUnwindSegue, sender: AddTripViewController
+        //returns: Bool
     override func shouldPerformSegue(withIdentifier identifier: String, sender: Any?) -> Bool {
         if identifier == "SaveUnwindSegue" {
             if let destination = destinationTextField.text, let start = startDateTextField.text, let end = endDateTextField.text {
@@ -105,6 +118,9 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
         return true;
     }
 
+    //function to resign keyboard when background is tapped
+        //parameters: sender (tapping on the background)
+        //return: none
     @IBAction func backGroundTapped(_ sender: UITapGestureRecognizer) {
         destinationTextField.resignFirstResponder()
         startDateTextField.resignFirstResponder()

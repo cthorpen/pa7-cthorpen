@@ -24,7 +24,9 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
         return 0
     }
     
-    // to tell what cell to put at this index path
+    // function to tell what cell should be put at this index path
+        //parameters: tableView, indexPath
+        //returns: UITableViewCell (selected cell)
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = indexPath.row
         let trip = trips[row]
@@ -36,6 +38,10 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: - initial setup
+    
+    //function to fill in first 5 cells with trips
+        //parameters: none
+        //return: none
     func initializeTrips() {
         //create 5 Trip instances, at least 2 need images
         //need to add image files
@@ -68,9 +74,14 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: - Segues
+    
+    //function called before a segue from TripTableViewController. Segue could be either "DetailSegue" or "AddSegue"
+        //parameters: segue: DetailSegue/AddSegue, sender: TripTableViewController
+        //return: none
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("hello from prepare")
         if let identifier = segue.identifier {
+            print("identifier in prepare: \(identifier)")
             if identifier == "DetailSegue" {
                 if let tripDetailVC = segue.destination as? TripDetailViewController {
                     if let indexPath = tableView.indexPathForSelectedRow { //issue here
@@ -80,7 +91,7 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
                     }
                 }
             }
-            else if identifier == "AddSegue" {
+            else {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     tableView.deselectRow(at: indexPath, animated: true)
                     print("add segue")
@@ -90,9 +101,13 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
 
+    //unwind function to return to TripTableViewController from AddTripViewController
+        //parameters: segue: AddTripViewController
+        //return: none
     @IBAction func unwindToTripTableViewController(segue: UIStoryboardSegue) {
         print("hello from unwind")
         if let identifier = segue.identifier {
+            print("identifier in unwind: \(identifier)")
             if identifier == "SaveUnwindSegue" {
                 if let addTripVC = segue.source as? AddTripViewController {
                     if let trip = addTripVC.tripOptional {
@@ -107,6 +122,10 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
     }
     
     //MARK: - Editing
+    
+    //function executes when the 'edit' button is pressed. Sets up editing mode
+        //parameters: sender: 'Edit' button
+        //return: none
     @IBAction func editButtonPressed(_ sender: UIBarButtonItem) {
         print("edit button pressed")
         let newEditingMode = !tableView.isEditing
@@ -114,7 +133,9 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
         print("in editing function")
     }
     
-    //rearranging rows in table
+    //allows for rearranging rows in table
+        //parameters: tableView, sourceIndexPath, destinationIndexPath
+        //return: none
     func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
         print("rearrange")
         let trip = trips.remove(at: sourceIndexPath.row)
@@ -122,7 +143,9 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
         tableView.reloadData()
     }
     
-    //deleting a row in editing mode
+    //allows for deleting a row in editing mode
+        //Parameters: tableView, editingStyle, indexPath
+        //returns: none
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         print("delete")
         trips.remove(at: indexPath.row)

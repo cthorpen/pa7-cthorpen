@@ -24,6 +24,9 @@ class TripTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    //updates a cell with the correct trip information
+        //parameters: trip
+        //returns: none
     func update(with trip: Trip) {
         
         destinationLabel.text = trip.destinationName
