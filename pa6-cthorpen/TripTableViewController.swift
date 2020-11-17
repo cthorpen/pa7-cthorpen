@@ -84,7 +84,7 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
             print("identifier in prepare: \(identifier)")
             if identifier == "DetailSegue" {
                 if let tripDetailVC = segue.destination as? TripDetailViewController {
-                    if let indexPath = tableView.indexPathForSelectedRow { //issue here
+                    if let indexPath = tableView.indexPathForSelectedRow {
                         let trip = trips[indexPath.row]
                         tripDetailVC.tripOptional = trip
                         print("detail segue")
@@ -94,6 +94,9 @@ class TripTableViewController: UIViewController, UITableViewDataSource, UITableV
             else {
                 if let indexPath = tableView.indexPathForSelectedRow {
                     tableView.deselectRow(at: indexPath, animated: true)
+                    if let addTripVC = segue.destination as? AddTripViewController {
+                        addTripVC.tripNum = trips.count
+                    }
                     print("add segue")
                 }
             }

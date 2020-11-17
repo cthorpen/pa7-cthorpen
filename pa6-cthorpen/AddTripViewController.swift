@@ -7,27 +7,30 @@
 
 import UIKit
 
-class AddTripViewController: UIViewController, UITextViewDelegate {
+class AddTripViewController: UIViewController, UITextViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
     @IBOutlet var destinationTextField: UITextField!
     @IBOutlet var startDateTextField: UITextField!
     @IBOutlet var endDateTextField: UITextField!
     
+    @IBOutlet var imageView: UIImageView!
     @IBOutlet var tripNumberLabel: UILabel!
-    var tripNum: Int = 6
     
     @IBOutlet var saveButton: UIButton!
     @IBOutlet var cancelButton: UIButton!
     
     var tripOptional: Trip? = nil
     let dateFormatter = DateFormatter()
-    
+    var tripNum: Int? = nil
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        tripNumberLabel.text = "Add Trip #\(tripNum)"
+        if let tripNumber = tripNum {
+            tripNumberLabel.text = "Add Trip #\(tripNumber)"
+        }
+        
     }
     
     //Function to resign the keyboard when return is pressed
@@ -56,8 +59,8 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
                         let start = dateFormatter.date(from: startDate)!
                         let end = dateFormatter.date(from: endDate)!
                         tripOptional = Trip(destinationName: destination, startDate: start, endDate: end, imageFileName: "")
-                        tripNum += 1
                     }
+                    
                     //auto unwrapped because the dates were checked in shouldPerformSegue(...)
                     else {
                         tripOptional = Trip(destinationName: destination, startDate: dateFormatter.date(from: startDate)!, endDate: dateFormatter.date(from: endDate)!, imageFileName: "")
@@ -117,7 +120,53 @@ class AddTripViewController: UIViewController, UITextViewDelegate {
         }
         return true;
     }
-
+    
+    //MARK: - Add Photo
+    
+    @IBAction func addPhotoButtonPressed(_ sender: UIBarButtonItem) {
+        
+        let imagePickerController = UIImagePickerController()
+        imagePickerController.delegate = self
+        
+        
+        
+        let alertController = UIAlertController(title: "Choose Photo", message: "Choose a photo to add to this trip.", preferredStyle: .actionSheet)
+        
+        // camera wont work on simulator
+        if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                    let photoLibraryAction = UIAlertAction(title: "Photo Library", style: .default, handler: { (_) in
+                        imagePickerController.sourceType = .photoLibrary
+                    })
+                    alertController.addAction(photoLibraryAction)
+                }
+        
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        alertController.addAction(UIAlertAction(title: "Camera", style: .default, handler: { (action:UIAlertAction) in
+            imagePickerController.sourceType = .camera
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        alertController.addAction(UIAlertAction(title: "Photo Library", style: .default, handler: { (action:UIAlertAction) in
+            imagePickerController.sourceType = .photoLibrary
+            self.present(imagePickerController, animated: true, completion: nil)
+        }))
+        
+        self.present(alertController, animated: true, completion: { () -> Void in
+            print("alert presented")
+        })
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        imageView.image = image
+        picker.dismiss(animated: true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        dismiss(animated: true, completion: nil)
+    }
+    
     //function to resign keyboard when background is tapped
         //parameters: sender (tapping on the background)
         //return: none

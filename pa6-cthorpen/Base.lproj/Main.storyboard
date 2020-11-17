@@ -248,44 +248,70 @@
                                 </constraints>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add Trip #X" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Vu-Eb-0Sj">
-                                <rect key="frame" x="162.5" y="260" width="89.5" height="20.5"/>
+                                <rect key="frame" x="162.5" y="260" width="89.5" height="20"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="oDl-av-Wya">
-                                <rect key="frame" x="121.5" y="296.5" width="171" height="30"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="rDc-VH-rOF">
+                                <rect key="frame" x="16" y="296" width="382" height="506"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5b-GZ-bBn">
-                                        <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
-                                        <state key="normal" title="Cancel"/>
-                                        <connections>
-                                            <segue destination="4b1-h5-gHq" kind="unwind" identifier="CancelUnwindSegue" unwindAction="unwindToTripTableViewControllerWithSegue:" id="Tsh-7p-WQt"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYH-Lz-uRK">
-                                        <rect key="frame" x="123" y="0.0" width="48" height="30"/>
-                                        <state key="normal" title="Save"/>
-                                        <connections>
-                                            <segue destination="4b1-h5-gHq" kind="unwind" identifier="SaveUnwindSegue" unwindAction="unwindToTripTableViewControllerWithSegue:" id="wX6-3L-ATj"/>
-                                        </connections>
-                                    </button>
+                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="75" translatesAutoresizingMaskIntoConstraints="NO" id="oDl-av-Wya">
+                                        <rect key="frame" x="105.5" y="0.0" width="171" height="30"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="g5b-GZ-bBn">
+                                                <rect key="frame" x="0.0" y="0.0" width="48" height="30"/>
+                                                <state key="normal" title="Cancel"/>
+                                                <connections>
+                                                    <segue destination="4b1-h5-gHq" kind="unwind" identifier="CancelUnwindSegue" unwindAction="unwindToTripTableViewControllerWithSegue:" id="Tsh-7p-WQt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EYH-Lz-uRK">
+                                                <rect key="frame" x="123" y="0.0" width="48" height="30"/>
+                                                <state key="normal" title="Save"/>
+                                                <connections>
+                                                    <segue destination="4b1-h5-gHq" kind="unwind" identifier="SaveUnwindSegue" unwindAction="unwindToTripTableViewControllerWithSegue:" id="wX6-3L-ATj"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="uD8-JR-tU3"/>
+                                        </constraints>
+                                    </stackView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="DdS-dt-J4O">
+                                        <rect key="frame" x="32.5" y="46" width="317" height="460"/>
+                                    </imageView>
                                 </subviews>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="uD8-JR-tU3"/>
-                                </constraints>
                             </stackView>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K2b-YW-BVe">
+                                <rect key="frame" x="0.0" y="818" width="414" height="44"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="i57-wj-hAS"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="camera" image="camera.fill" catalog="system" id="b81-Oq-4aT">
+                                        <connections>
+                                            <action selector="addPhotoButtonPressed:" destination="Oxx-3k-Af5" id="7BC-4r-15h"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="e48-vO-5kd"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="rDc-VH-rOF" firstAttribute="leading" secondItem="e48-vO-5kd" secondAttribute="leading" constant="16" id="1bh-fd-nmA"/>
                             <constraint firstItem="e48-vO-5kd" firstAttribute="trailing" secondItem="luX-oD-uCx" secondAttribute="trailing" constant="16" id="8VM-Qn-bC4"/>
+                            <constraint firstItem="e48-vO-5kd" firstAttribute="trailing" secondItem="rDc-VH-rOF" secondAttribute="trailing" constant="16" id="A5C-Ho-m2i"/>
                             <constraint firstItem="2Vu-Eb-0Sj" firstAttribute="centerX" secondItem="luX-oD-uCx" secondAttribute="centerX" id="CVP-LQ-O4U"/>
-                            <constraint firstItem="oDl-av-Wya" firstAttribute="top" secondItem="2Vu-Eb-0Sj" secondAttribute="bottom" constant="16" id="KE7-LV-3Qd"/>
+                            <constraint firstItem="rDc-VH-rOF" firstAttribute="top" secondItem="2Vu-Eb-0Sj" secondAttribute="bottom" constant="16" id="FU4-gd-jUp"/>
+                            <constraint firstItem="K2b-YW-BVe" firstAttribute="leading" secondItem="e48-vO-5kd" secondAttribute="leading" id="JHd-GT-IJv"/>
                             <constraint firstItem="2Vu-Eb-0Sj" firstAttribute="top" secondItem="luX-oD-uCx" secondAttribute="bottom" constant="16" id="b8c-u0-QF7"/>
-                            <constraint firstItem="oDl-av-Wya" firstAttribute="centerX" secondItem="zYz-ue-fID" secondAttribute="centerX" id="p7E-ej-U78"/>
+                            <constraint firstItem="K2b-YW-BVe" firstAttribute="trailing" secondItem="e48-vO-5kd" secondAttribute="trailing" id="bhf-LE-rJx"/>
+                            <constraint firstItem="K2b-YW-BVe" firstAttribute="bottom" secondItem="e48-vO-5kd" secondAttribute="bottom" id="frC-5r-p2W"/>
                             <constraint firstItem="luX-oD-uCx" firstAttribute="leading" secondItem="e48-vO-5kd" secondAttribute="leading" constant="16" id="uNs-DF-VdF"/>
+                            <constraint firstItem="K2b-YW-BVe" firstAttribute="top" secondItem="rDc-VH-rOF" secondAttribute="bottom" constant="16" id="uRc-Ey-8Ln"/>
                             <constraint firstItem="luX-oD-uCx" firstAttribute="top" secondItem="e48-vO-5kd" secondAttribute="top" constant="16" id="yLu-Dh-OOM"/>
                         </constraints>
                         <connections>
@@ -296,6 +322,7 @@
                     <connections>
                         <outlet property="destinationTextField" destination="ydq-Xg-g6K" id="ulu-KU-b7N"/>
                         <outlet property="endDateTextField" destination="es0-0X-ykA" id="9eT-ZD-eSQ"/>
+                        <outlet property="imageView" destination="DdS-dt-J4O" id="cmk-K1-Wbl"/>
                         <outlet property="startDateTextField" destination="Dio-yo-Q5s" id="Bgx-we-Nd2"/>
                         <outlet property="tripNumberLabel" destination="2Vu-Eb-0Sj" id="D2f-Fr-Egc"/>
                     </connections>
@@ -330,6 +357,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.fill" catalog="system" width="128" height="94"/>
         <image name="plus" catalog="system" width="128" height="113"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
