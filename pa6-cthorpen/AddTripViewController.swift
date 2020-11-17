@@ -159,6 +159,7 @@ class AddTripViewController: UIViewController, UITextViewDelegate, UINavigationC
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
         let image = info[UIImagePickerController.InfoKey.originalImage] as! UIImage
+        //set imageView to selected image
         imageView.image = image
         picker.dismiss(animated: true, completion: nil)
     }
