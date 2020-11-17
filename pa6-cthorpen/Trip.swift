@@ -21,7 +21,7 @@ class Trip {
     }()
     
     var description: String {
-        return "My trip to \(destinationName), from \(startDate) to \(endDate)."
+        return "My trip to \(destinationName), from \(startDate) to \(endDate)!"
     }
     
     //MARK: - initializers
